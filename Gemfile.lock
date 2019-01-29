@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    paged_groups (1.0.0)
+    paged_groups (2.0.0)
 
 GEM
   remote: https://rubygems.org/

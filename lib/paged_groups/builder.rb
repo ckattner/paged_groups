@@ -26,7 +26,9 @@ module PagedGroups
       clear
     end
 
-    def add(*groups, force: false)
+    # Groups should be a two-dimensional array with the first dimension being the group and
+    # the second dimension being the record.
+    def add(groups, force: false)
       dirty!
 
       groups.each { |group| insert(Array(group), force: force) }

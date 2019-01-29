@@ -62,10 +62,10 @@ data = [
 Let's use max page size of three for this example.  In the real-world a max page size of three is most likely too small but it fits our example data set above for illustration purpose; you should be able to extrapolate this out with larger sets and larger max page sizes.  To page this set we would execute:
 
 ````ruby
-pages = PagedGroups.builder(page_size: 3).add(*data).all
+pages = PagedGroups.builder(page_size: 3).add(data).all
 ````
 
-*Note:* We are using the splat (asterisk) operator to indicate each group is an argument.
+*Note:* Add accepts a two-dimensional array with the first dimension being the group and the second dimension being the record.
 
 our ````pages```` variable should now contain a two-dimensional array where dimension one is page and dimension two is record and would be:
 
@@ -103,7 +103,7 @@ There may be merit in placing *separator* record in between groups in the same p
 
 ````ruby
 pages = PagedGroups.builder(page_size: 3, space: true, spacer: { id: nil, name: '' })
-                   .add(*data)
+                   .add(data)
                    .all
 ````
 
@@ -152,8 +152,8 @@ other_data = [
   ]
 ]
 pages = PagedGroups.builder(page_size: 3, space: true, spacer: { id: nil, name: '' })
-                   .add(*data)
-                   .add(*other_data, force: true)
+                   .add(data)
+                   .add(other_data, force: true)
                    .all
 ````
 

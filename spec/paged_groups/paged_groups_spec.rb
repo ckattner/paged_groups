@@ -46,7 +46,7 @@ describe ::PagedGroups do
     let(:spacer) { { id: nil, name: '' } }
 
     specify 'Standard use-case example works as advertised' do
-      pages = PagedGroups.builder(page_size: page_size).add(*data).all
+      pages = PagedGroups.builder(page_size: page_size).add(data).all
 
       expected_pages = [
         [
@@ -77,7 +77,7 @@ describe ::PagedGroups do
 
     specify 'Spacing customization example works as advertised' do
       pages = PagedGroups.builder(page_size: page_size, space: true, spacer: spacer)
-                         .add(*data)
+                         .add(data)
                          .all
 
       expected_pages = [
@@ -118,8 +118,8 @@ describe ::PagedGroups do
       ]
 
       pages = PagedGroups.builder(page_size: page_size, space: true, spacer: spacer)
-                         .add(*data)
-                         .add(*other_data, force: true)
+                         .add(data)
+                         .add(other_data, force: true)
                          .all
 
       expected_pages = [

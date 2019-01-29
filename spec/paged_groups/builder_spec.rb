@@ -28,28 +28,28 @@ describe ::PagedGroups::Builder do
 
   describe '#add and #all' do
     it 'should page groups' do
-      page_builder.add(hundred_rows)
+      page_builder.add([hundred_rows])
 
       expect(page_builder.all.length).to eq(1)
 
-      page_builder.add(twenty_rows)
-      page_builder.add(twenty_rows)
+      page_builder.add([twenty_rows])
+      page_builder.add([twenty_rows])
 
       expect(page_builder.all.length).to eq(2)
 
-      page_builder.add(twenty_rows)
+      page_builder.add([twenty_rows])
 
       expect(page_builder.all.length).to eq(3)
     end
 
     it 'should force add and space' do
-      page_builder.add(hundred_rows)
+      page_builder.add([hundred_rows])
 
       expect(page_builder.all.length).to eq(1)
       expect(page_builder.all.first.length).to eq(100)
 
-      page_builder.add(twenty_rows, force: true)
-      page_builder.add(twenty_rows, force: true)
+      page_builder.add([twenty_rows], force: true)
+      page_builder.add([twenty_rows], force: true)
 
       expect(page_builder.all.length).to eq(1)
       expect(page_builder.all.first.length).to eq(100 + 20 * 2 + 2)
