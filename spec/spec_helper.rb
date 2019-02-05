@@ -7,4 +7,10 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+require 'simplecov'
+require 'simplecov-console'
+
+SimpleCov.formatter = SimpleCov::Formatter::Console
+SimpleCov.start
+
 require './lib/paged_groups'

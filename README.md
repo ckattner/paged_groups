@@ -1,6 +1,6 @@
 # paged_groups
 
-[![Build Status](https://travis-ci.org/bluemarblepayroll/paged_groups.svg?branch=master)](https://travis-ci.org/bluemarblepayroll/paged_groups)
+[![Gem Version](https://badge.fury.io/rb/paged_groups.svg)](https://badge.fury.io/rb/paged_groups) [![Build Status](https://travis-ci.org/bluemarblepayroll/paged_groups.svg?branch=master)](https://travis-ci.org/bluemarblepayroll/paged_groups) [![Maintainability](https://api.codeclimate.com/v1/badges/905e58c55e1ec9c61383/maintainability)](https://codeclimate.com/github/bluemarblepayroll/paged_groups/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/905e58c55e1ec9c61383/test_coverage)](https://codeclimate.com/github/bluemarblepayroll/paged_groups/test_coverage) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Imagine a two-dimensional data set (first dimension being group and second dimension being record) for which you wanted to page with the following rules:
 
