@@ -45,6 +45,36 @@ describe ::PagedGroups do
 
     let(:spacer) { { id: nil, name: '' } }
 
+    specify 'Number of records per page should never exceed limit' do
+      pages = PagedGroups.builder(page_size: page_size, limit: 4).add(data).all
+
+      expected_pages = [
+        [
+          { id: 1, name: 'Jordan' },
+          { id: 2, name: 'Pippen' },
+          { id: 3, name: 'Rodman' },
+          { id: 4, name: 'Harper' }
+        ],
+        [
+          { id: 5, name: 'Longley' },
+          { id: 6, name: 'Kukoc' },
+          { id: 7, name: 'Kerr' }
+        ],
+        [
+          { id: 8, name: 'Buechler' },
+          { id: 9, name: 'Wennington' },
+          { id: 10, name: 'Simpkins' }
+        ],
+        [
+          { id: 11, name: 'Caffey' },
+          { id: 12, name: 'Edwards' },
+          { id: 13, name: 'Salley' }
+        ]
+      ]
+
+      expect(pages).to eq(expected_pages)
+    end
+
     specify 'Standard use-case example works as advertised' do
       pages = PagedGroups.builder(page_size: page_size).add(data).all
 

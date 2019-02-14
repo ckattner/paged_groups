@@ -14,11 +14,13 @@ module PagedGroups
 
     attr_reader :page_size,
                 :page_count,
+                :limit,
                 :row_count,
                 :space,
                 :spacer
 
-    def initialize(page_size: DEFAULT_PAGE_SIZE, space: false, spacer: nil)
+    def initialize(limit: nil, page_size: DEFAULT_PAGE_SIZE, space: false, spacer: nil)
+      @limit      = limit ? limit.to_i : nil
       @page_size  = page_size ? page_size.to_i : DEFAULT_PAGE_SIZE
       @space      = space || false
       @spacer     = spacer
@@ -31,7 +33,11 @@ module PagedGroups
     def add(groups, force: false)
       dirty!
 
-      groups.each { |group| insert(Array(group), force: force) }
+      groups.each do |group|
+        limit_group_slice(Array(group)).each do |split_group|
+          insert(split_group, force: force)
+        end
+      end
 
       self
     end
@@ -102,8 +108,12 @@ module PagedGroups
       not_top? && proposed_current_page_length > page_size
     end
 
-    def end_of_current_page?
-      @current_page.length >= page_size
+    def limit_group_slice(group)
+      if limit
+        group.each_slice(limit)
+      else
+        [group]
+      end
     end
   end
 end

@@ -26,6 +26,18 @@ describe ::PagedGroups::Builder do
 
   it { expect(page_builder.page_size).to eq(page_size) }
 
+  describe '#to_s' do
+    it 'should return page and row count' do
+      class_name = ::PagedGroups::Builder.name
+      page_count = subject.page_count
+      row_count = subject.row_count
+
+      expected = "[#{class_name}] Page Count: #{page_count}, Row Count: #{row_count}"
+
+      expect(subject.to_s).to eq(expected)
+    end
+  end
+
   describe '#add and #all' do
     it 'should page groups' do
       page_builder.add([hundred_rows])

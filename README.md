@@ -139,7 +139,6 @@ Now, our resulting pages would become:
 ]
 ````
 
-
 ### Forcing Same Page
 
 Another customization that may come in handy is the ability to force-add groups to the current page.  For example, say we wanted to add another group to our initial data set, but we want it to end up on the same page as the last records:
@@ -191,6 +190,16 @@ Now the result pages would be:
   ]
 ]
 ````
+
+#### Group Size Upper Bound
+
+You may run into the case where a group is just so large that it makes more sense to just split it up than keep it atomic.  In this case, you can specify a 'limit' option:
+
+````ruby
+pages = PagedGroups.builder(page_size: 50, limit: 150).add(data).all
+````
+
+The above builder can now be interpreted as: *Each page should contain a maximum of 50 rows, but split groups over 150 rows*
 
 ## Contributing
 
